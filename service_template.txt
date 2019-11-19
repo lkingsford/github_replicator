@@ -1,0 +1,13 @@
+[Unit]
+Description="GitHubReplicator Gunicorn Instance"
+After=network.target
+
+[Service]
+User=root
+Group=www-data
+WorkingDirectory=/root/github_replicator/replicator
+Environment="PATH=/root/github_replicator/env/bin"
+ExecStart=/root/github_replicator/env/bin/gunicorn --workers 5 --bind unix:/tmp/app.sock -m 0007 wsgi:app
+
+[Install]
+WantedBy=multi-user.target

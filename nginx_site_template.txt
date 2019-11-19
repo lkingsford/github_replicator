@@ -1,0 +1,8 @@
+server {
+        server_name SERVERNAME;
+
+        location / {
+                include proxy_params;
+                proxy_pass http://unix:/tmp/app.sock;
+        }
+}
